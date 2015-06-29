@@ -20,6 +20,10 @@ with the help of a number of SIF members.
 <ul>
     <li>Manage and Add New Teams</li>
 </ul>
+##### -- Users
+<ul>
+    <li>Added Ability to Lock-down and Restrict Access to Portal</li>
+</ul>
 
 ---
 
@@ -43,6 +47,10 @@ with the help of a number of SIF members.
 ##### -- Study Groups
 <ul>
     <li>Manage and Add New Study Groups</li>
+</ul>
+##### -- Users
+<ul>
+    <li>Add User to Member</li>
 </ul>
 
 ### Framework Documentation
