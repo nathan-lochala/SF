@@ -5,10 +5,44 @@ with the help of a number of SIF members.
 
 ### Development Roadmap
 
-V1 - Initial Release
+#### V1 - Initial Release
+##### -- Members
 <ul>
-<li>Add New Members</li>
-<li>Manage and Add New Teams</li>
+    <li>Add New Members</li>
+    <ul>
+    <li>JQuery Validation for New Members</li>
+    <li>Only Accept Unique Members</li>
+    </ul>
+    <li>Search Members</li>
+    <li>Manage and Add New Teams</li>
+</ul>
+##### -- Teams
+<ul>
+    <li>Manage and Add New Teams</li>
+</ul>
+
+---
+
+#### V1.1 - Coming July 2015
+##### -- Members
+<ul>
+    <li>Family Pages</li>
+    <ul>
+        <li>Edit Member Profile</li>
+        <li>Edit Family Members to Member Page</li>
+    </ul>
+</ul>
+##### -- Teams
+<ul>
+    <li>Team Pages</li>
+    <ul>
+        <li>View/Manage Team Members</li>
+        <li>View/Manage Members with Interests in Teams</li>
+    </ul>
+</ul>
+##### -- Study Groups
+<ul>
+    <li>Manage and Add New Study Groups</li>
 </ul>
 
 ### Framework Documentation
