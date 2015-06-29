@@ -6,8 +6,10 @@ with the help of a number of SIF members.
 ### Development Roadmap
 
 V1 - Initial Release
--Add New Members
--Manage and Add New Teams
+<ul>
+<li>Add New Members</li>
+<li>Manage and Add New Teams</li>
+</ul>
 
 ### Framework Documentation
 
