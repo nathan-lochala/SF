@@ -37,13 +37,15 @@ Route::controllers([
     | MEMBERS
     |--------------------------------------------------------------------------
 */
+Route::get('member/search','MemberController@search');
+Route::post('member/search','MemberController@searchResults');
+
 Route::get('member','MemberController@index');
 Route::get('member/create','MemberController@create');
 Route::post('member/create','MemberController@store');
 Route::get('member/{member}','MemberController@show');
 
-Route::get('member/search','MemberController@search');
-Route::post('member/search','MemberController@searchResults');
+
 
 /*
     |--------------------------------------------------------------------------

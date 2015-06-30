@@ -1,7 +1,7 @@
 #!/bin/sh
-cd /var/www/html
-chmod -R 777 SF/
-chown -R qsiftp SF/
-chgrp -R apache SF/
+cd ~/Dropbox/Projects/PhpstormProjects
+sudo chmod -R 777 SF/
+sudo chown -R Nathan SF/
+sudo chgrp -R staff SF/
 
 

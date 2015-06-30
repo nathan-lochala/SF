@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Log;
 
 class TestController extends Controller
 {
@@ -19,33 +20,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        $member_list = Member::all();
-        foreach($member_list as $member){
-            if(empty($member->family_id)){
-                $member->family_id = null;
-            }
-
-            if(empty($member->user_id)){
-                $member->user_id = null;
-            }
-
-            if(empty($member->email)){
-                $member->email = null;
-            }
-
-            if(empty($member->mobile)){
-                $member->mobile = null;
-            }
-
-            if(empty($member->district_id)){
-                $member->district_id = null;
-            }
-
-            $member->created_at = Carbon::yesterday();
-            $member->updated_at = Carbon::yesterday();
-
-            $member->save();
-        }
+        $monolog = Log::getMonolog();
+        dd($monolog);
 
     }
 
