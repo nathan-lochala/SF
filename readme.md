@@ -14,7 +14,6 @@ with the help of a number of SIF members.
     <li>Only Accept Unique Members</li>
     </ul>
     <li>Search Members</li>
-    <li>Manage and Add New Teams</li>
 </ul>
 ##### -- Teams
 <ul>
@@ -30,6 +29,7 @@ with the help of a number of SIF members.
 #### V1.1 - Coming July 2015
 ##### -- Members
 <ul>
+    <li>Export New Members ID Cards</li>
     <li>Family Pages</li>
     <ul>
         <li>Edit Member Profile</li>
