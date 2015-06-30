@@ -59,8 +59,12 @@ This application is built on the Laravel 5.1 framework.
 Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
 ### License
-The SIF Portal is the sole-property of Shenzhen International Fellowship and it's developer, Nathan Lochala. 
+Unless otherwise indicated, all intellectual property rights, including the copyrights, 
+designs, trade marks, logos, software and all proprietary data as well as any business, marketing, 
+technical or other information in the material contained in this Web Site (SIF Portal) 
+(including, without limitation, photographs and graphical images) constitute and 
+remain the sole property of Shenzhen International Fellowship. 
 
-©Copyright 2015 SIF | Nathan Lochala
+Copyright ©2015 SIF | Nathan Lochala
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
