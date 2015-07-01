@@ -56,9 +56,9 @@
                 <td>{{ $member->id }}</td>
                 <td>{{ $member->first_name }}</td>
                 <td>{{ $member->last_name }}</td>
-                <td>{{ $member->email }}</td>
+                <td>{!! $member->email !!}</td>
                 <td>{{ $member->mobile }}</td>
-                <td><a style="width: 25%;" href="{{ url('#') }}">
+                <td><a style="width: 25%;" href="{{ url('member/' . $member->id ) }}">
                         @include('_buttons.click-button',[
                             'size' => 'xs',
                             'color' => 'system',

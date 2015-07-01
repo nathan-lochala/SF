@@ -30,6 +30,8 @@ Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+Route::post('user/{user}/password_reset','UserController@passwordReset');
+Route::post('user/{member}/create','UserController@store');
 
 
 /*
@@ -44,8 +46,8 @@ Route::get('member','MemberController@index');
 Route::get('member/create','MemberController@create');
 Route::post('member/create','MemberController@store');
 Route::get('member/{member}','MemberController@show');
-
-
+Route::get('member/{member}/edit','MemberController@edit');
+Route::patch('member/{member}','MemberController@update');
 
 /*
     |--------------------------------------------------------------------------

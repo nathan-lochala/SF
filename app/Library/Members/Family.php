@@ -20,6 +20,6 @@ class Family extends Model
      */
     public function members()
     {
-        return $this->hasMany('App\Member\Member','member_id');
+        return $this->hasMany('App\Member\Member','family_id');
     }
 }

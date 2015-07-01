@@ -45,6 +45,19 @@ class Member extends Model
      */
     protected $table = 'members';
 
+    /**
+     * Return the email as a pre-formatted URL
+     *
+     * @return string
+     */
+    public function email()
+    {
+        if($email = $this->email){
+            return '<a href="mailto:' . $email . '">' . $email . '</a>';
+        }
+        return 'N/A';
+    }
+
 
     /*
         |--------------------------------------------------------------------------
@@ -105,6 +118,16 @@ class Member extends Model
     }
 
     /**
+     * This member has many idCards
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function idCard()
+    {
+        return $this->hasMany('App\Member\PrintList','member_id');
+    }
+
+    /**
      *  This member belongs to a family
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -162,15 +185,23 @@ class Member extends Model
      *
      * @param bool|FALSE $is_last_name_first
      *
+     * @param bool       $make_url
+     *
      * @return string
      */
-    public function getFullName($is_last_name_first = FALSE)
+    public function getFullName($is_last_name_first = FALSE, $make_url = FALSE)
     {
         if($is_last_name_first){
-            return $this->last_name . ', ' . $this->first_name;
+            $name = $this->last_name . ', ' . $this->first_name;
+        }else{
+            $name = $this->first_name . ' ' . $this->last_name;
         }
 
-        return $this->first_name . ' ' . $this->last_name;
+        if($make_url){
+            return '<a href="' . url('member/' . $this->id) . '">' . $name . '</a>';
+        }
+
+        return $name;
     }
 
     /**
