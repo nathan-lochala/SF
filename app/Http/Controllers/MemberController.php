@@ -30,6 +30,12 @@ class MemberController extends Controller
         return view('member.search');
     }
 
+    public function viewAll()
+    {
+        $member_list = Member::all();
+        return view('member.view-all',compact('member_list'));
+    }
+
     /**
      * Process the results from a search and return them.
      *

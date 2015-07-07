@@ -43,6 +43,9 @@ Route::post('user/{member}/create','UserController@store');
 Route::get('member/search','MemberController@search');
 Route::post('member/search','MemberController@searchResults');
 
+    //View All
+Route::get('member/view_all','MemberController@viewAll');
+
     //Family Management
 Route::get('member/{member}/remove_family','MemberController@removeFamily');
 
