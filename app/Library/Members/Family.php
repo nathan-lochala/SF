@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Family extends Model
 {
+
+    /**
+     * Add mass-assignment to model.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'member_id'
+    ];
+
     /**
      * The database table (families) used by the model.
      *

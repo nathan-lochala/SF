@@ -34,6 +34,7 @@ class Member extends Model
         'first_name',
         'last_name',
         'mobile',
+        'family_id',
         'email',
         'district_id'
     ];
@@ -144,7 +145,7 @@ class Member extends Model
     */
     public function teamInterests()
     {
-        // belongsToMany('class','pivot_table','id')
+        // belongsToMany('class','pivot_table','id')->withTimeStamps()
         return $this->belongsToMany('App\Team\Team','R_teams_interests_pivot','member_id','team_id')->withTimestamps();
     }
 

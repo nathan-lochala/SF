@@ -8,7 +8,15 @@
    'icon' => 'fa fa-home'
    ])
 
-
+<a style="width: 25%; float:left; bottom: 10px; right: 10px" href="{{ url('family/create/?member_id=' . $member->id) }}">
+    @include('_buttons.click-button',[
+        'size' => 'xs',
+        'color' => 'primary',
+        'text' => 'Add Family Members',
+        'icon' => 'fa fa-plus'
+    ])</a>
+<br />
+<br />
    @if($member->family == null || $member->family->members->isEmpty())
        <em>No Family Members to Display</em>
    @else
@@ -20,7 +28,7 @@
                   <td>{!! $family_member->getFullName(false,true) !!}</td>
                   <td>{!! $family_member->email() !!}</td>
                   <td>{{ $family_member->mobile or 'N/A' }}</td>
-                  <td style="width: 20%"><a  href="{{ url('member/' . $member->id . '/remove_family') }}">
+                  <td style="width: 20%"><a  href="{{ url('member/' . $family_member->id . '/remove_family') }}">
                       @include('_buttons.click-button',[
                           'size' => 'xs',
                           'color' => 'dark',
@@ -32,13 +40,5 @@
           @endforeach
       @include('_tables.end-new-table')
    @endif
-<br />
-   <a style="width: 25%; float:left; bottom: 10px; right: 10px" href="{{ url('family/create/?member_id=' . $member->id) }}">
-      @include('_buttons.click-button',[
-          'size' => 'xs',
-          'color' => 'primary',
-          'text' => 'Add Family Members',
-          'icon' => 'fa fa-plus'
-      ])</a>
 
 @include('_panels.end-new-panel')

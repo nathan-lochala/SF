@@ -10,6 +10,15 @@
 
 @if(!$member->idCard || $member->idCard->isEmpty())
     <em>ID Card has not been added to the list. This is probably due to the fact that this member pre-dates the creation of the portal.</em>
+    <br />
+    <br />
+    <a style="width: 25%; float: left; bottom: 10px; right: 10px" href="{{ url('print/store?member_id=' . $member->id ) }}">
+        @include('_buttons.click-button',[
+            'size' => 'xs',
+            'color' => 'primary',
+            'text' => 'Print ID Card',
+            'icon' => 'fa fa-print'
+        ])</a>
 @else
     <!-- TABLE OF ID CARDS -->
     @include('_tables.new-table',['id' => 'id_card', 'table_head' => ['Added to List','Printed On','Received On','','']])
@@ -37,7 +46,7 @@
                             @include('_buttons.click-button',[
                                 'size' => 'xs',
                                 'color' => 'warning',
-                                'text' => 'Mark as Received',
+                                'text' => 'Mark as Delivered',
                                 'icon' => 'fa fa-check'
                             ])</a>
                     @endif
@@ -47,7 +56,7 @@
                         @include('_buttons.click-button',[
                             'size' => 'xs',
                             'color' => 'primary',
-                            'text' => 'Re-Print',
+                            'text' => 'Re-print ID Card',
                             'icon' => 'fa fa-print'
                         ])</a>
                 </td>

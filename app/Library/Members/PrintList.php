@@ -21,7 +21,8 @@ class PrintList extends Model
     protected $fillable = [
         'member_id',
         'printed_at',
-        'received_at'
+        'received_at',
+        'created_at'
     ];
     
     /**

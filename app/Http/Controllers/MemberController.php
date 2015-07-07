@@ -46,12 +46,19 @@ class MemberController extends Controller
     }
 
 
-//TODO: Change tiles at top of Member's profile page to something more helpful.
-//TODO: Create Tables on the Member's Profile for Family Members, User, Teams, Study Groups, ID Cards
-
-
-
-
+    /**
+     * Remove the family from the member
+     *
+     * @param Member $member
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeFamily(Member $member)
+    {
+        $member->update(['family_id' => null]);
+        flash()->success('Member removed from family.');
+        return redirect()->back();
+    }
 
 
     /*
@@ -59,7 +66,6 @@ class MemberController extends Controller
         | CRUD METHODS
         |--------------------------------------------------------------------------
     */
-
 
 
 
