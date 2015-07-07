@@ -37,6 +37,9 @@
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/datatables/media/css/dataTables.bootstrap.css') }}">
 
+    <!-- Select2 Plugin  -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/select2/css/core.css') }}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="{{ url('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>

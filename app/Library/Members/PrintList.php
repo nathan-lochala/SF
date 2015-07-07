@@ -19,7 +19,10 @@ class PrintList extends Model
      * @var array
      */
     protected $fillable = [
-        'member_id'
+        'member_id',
+        'printed_at',
+        'received_at',
+        'created_at'
     ];
     
     /**

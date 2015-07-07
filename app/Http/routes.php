@@ -30,6 +30,8 @@ Route::controllers([
     'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+Route::post('user/{user}/password_reset','UserController@passwordReset');
+Route::post('user/{member}/create','UserController@store');
 
 
 /*
@@ -37,15 +39,20 @@ Route::controllers([
     | MEMBERS
     |--------------------------------------------------------------------------
 */
+    //Search
 Route::get('member/search','MemberController@search');
 Route::post('member/search','MemberController@searchResults');
 
+    //Family Management
+Route::get('member/{member}/remove_family','MemberController@removeFamily');
+
+    //Member Methods
 Route::get('member','MemberController@index');
 Route::get('member/create','MemberController@create');
 Route::post('member/create','MemberController@store');
 Route::get('member/{member}','MemberController@show');
-
-
+Route::get('member/{member}/edit','MemberController@edit');
+Route::patch('member/{member}','MemberController@update');
 
 /*
     |--------------------------------------------------------------------------
@@ -58,3 +65,21 @@ Route::post('team/create','TeamController@store');
 Route::get('team/{team}/edit','TeamController@edit');
 Route::patch('team/{team}','TeamController@update');
 Route::get('team/{team}/delete','TeamController@destroy');
+
+/*
+    |--------------------------------------------------------------------------
+    | PRINT ID CARDS
+    |--------------------------------------------------------------------------
+*/
+ROUTE::get('print/store','IdCardController@store');
+ROUTE::get('print/{id_card}/reprint','IdCardController@reprint');
+ROUTE::get('print/{id_card}/printed','IdCardController@printed');
+ROUTE::get('print/{id_card}/received','IdCardController@received');
+
+/*
+    |--------------------------------------------------------------------------
+    | FAMILY
+    |--------------------------------------------------------------------------
+*/
+ROUTE::get('family/create','FamilyController@create');
+ROUTE::post('family/create','FamilyController@store');

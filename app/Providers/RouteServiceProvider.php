@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Member\Family;
+use App\Member\Member;
+use App\Member\PrintList;
+use App\Team\Team;
+use App\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,8 +31,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
         parent::boot($router);
-        $router->model('team','App\Team\Team');
 
+        $router->model('team', Team::class);
+        $router->model('member', Member::class);
+        $router->model('user', User::class);
+        $router->model('id_card', PrintList::class);
+        $router->model('family', Family::class);
     }
 
     /**

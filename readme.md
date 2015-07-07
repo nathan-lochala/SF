@@ -26,7 +26,7 @@ with the help of a number of SIF members.
 
 ---
 
-#### V1.1 - Coming July 2015
+#### V1.1 - Coming Late July 2015
 ##### -- Members
 <ul>
     <li>Export New Members ID Cards</li>
@@ -51,6 +51,21 @@ with the help of a number of SIF members.
 ##### -- Users
 <ul>
     <li>Add User to Member</li>
+</ul>
+
+---
+#### V1.2 - Coming August 2015
+##### -- Guests
+<ul>
+    <li>Guests Sign-in Page</li>
+    <ul>
+        <li>Generates opportunities for followup by giving SIF a record of who came as a guest.</li>
+    </ul>
+</ul>
+##### -- ID Card
+<ul>
+    <li>Label printer that can print temporary name tags for guests and those members who forgot their ID Card.</li>
+    <li>Template for label listing out their name, date, and whether they are a visitor or member.</li>
 </ul>
 
 ### Framework Documentation

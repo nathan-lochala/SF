@@ -46,10 +46,19 @@ class MemberController extends Controller
     }
 
 
-
-
-
-
+    /**
+     * Remove the family from the member
+     *
+     * @param Member $member
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeFamily(Member $member)
+    {
+        $member->update(['family_id' => null]);
+        flash()->success('Member removed from family.');
+        return redirect()->back();
+    }
 
 
     /*
@@ -57,7 +66,6 @@ class MemberController extends Controller
         | CRUD METHODS
         |--------------------------------------------------------------------------
     */
-
 
 
 
@@ -106,43 +114,54 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Member $member
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(Member $member)
     {
-        //
+        return view('member/member-profile',compact('member'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Member $member
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Member $member)
     {
-        //
+        $district_list = District::districtDropdown();
+        return view('member.edit',compact('district_list','member'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param Member $member
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function update($id)
+    public function update(Member $member)
     {
-        //
+        $member->update(Request::all());
+        flash()->success('The member, "' . $member->getFullName() . '" has been successfully updated.');
+        return redirect(url('member/' . $member->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Member $member
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Member $member)
     {
         //
     }

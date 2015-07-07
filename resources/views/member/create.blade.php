@@ -15,6 +15,7 @@
     @include('_forms.new-column',['column_size' => 'col-md-12'])
 
     @include('member.form')
+    @include('member.team-select')
 
     @include('_forms.end-new-column')
     @include('_forms.end-new-row')
@@ -83,7 +84,7 @@
                     <td>{{ $member->id }}</td>
                     <td>{{ $member->last_name }}</td>
                     <td>{{ $member->mobile }}</td>
-                    <td>{{ $member->email }}</td>
+                    <td>{!! $member->email !!}</td>
                 </tr>
             @endforeach
         @include('_tables.end-new-table')

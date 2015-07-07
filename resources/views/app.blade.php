@@ -74,6 +74,7 @@
 <!-- End: Main -->
 
 @include('_includes.js')
+
 @yield('js')
 
 @include('_includes.foot')
