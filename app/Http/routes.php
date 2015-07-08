@@ -19,6 +19,13 @@ Route::get('home', function () {
     return redirect(url('member/create'));
 });
 
+/*
+    |--------------------------------------------------------------------------
+    | TESTING
+    |--------------------------------------------------------------------------
+*/
+
+
 Route::get('test', 'TestController@index');
 
 /*
@@ -42,6 +49,9 @@ Route::post('user/{member}/create','UserController@store');
     //Search
 Route::get('member/search','MemberController@search');
 Route::post('member/search','MemberController@searchResults');
+
+    //View All
+Route::get('member/view_all','MemberController@viewAll');
 
     //Family Management
 Route::get('member/{member}/remove_family','MemberController@removeFamily');

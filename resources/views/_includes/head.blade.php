@@ -7,6 +7,9 @@
     <meta name="author" content="{{ env('HEAD_AUTHOR') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Laravel Generated CSS -->
+    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">--}}
+
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/skin/default_skin/css/theme.css') }}">
 
@@ -37,8 +40,12 @@
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/datatables/media/css/dataTables.bootstrap.css') }}">
 
+    <!-- DataTables TableTools-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css') }}">
+
     <!-- Select2 Plugin  -->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/plugins/select2/css/core.css') }}">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

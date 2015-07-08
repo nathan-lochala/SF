@@ -30,16 +30,3 @@
 @include('_forms.end-new-section')
         <!----------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------->
-
-@section('js')
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-
-            // Init Select2 - Basic Single
-            $("#leader_member_id").select2({
-                placeholder: "",
-            });
-
-        });
-    </script>
-@stop

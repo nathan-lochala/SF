@@ -22,14 +22,19 @@
 <!-- MaskedInput Plugin -->
 <script src={{ asset('vendor/plugins/jquerymask/jquery.maskedinput.min.js') }}></script>
 
-<!-- Datatables ColReorder addon -->
-<script src={{ asset('vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js') }}></script>
+<!-- Datatables  -->
+<script src={{ asset('vendor/plugins/datatables/media/js/jquery.dataTables.js') }}></script>
+
+<!-- Datatables Bootstrap Modifications  -->
+<script src={{ asset('vendor/plugins/datatables/media/js/dataTables.bootstrap.js') }}></script>
 
 <!-- Datatables Tabletools addon -->
 <script src={{ asset('vendor/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js') }}></script>
 
-<!-- Datatables Bootstrap Modifications  -->
-<script src={{ asset('vendor/plugins/datatables/media/js/dataTables.bootstrap.js') }}></script>
+<!-- Datatables ColReorder addon -->
+<script src={{ asset('vendor/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js') }}></script>
+
+
 
 
 <script type="text/javascript">
