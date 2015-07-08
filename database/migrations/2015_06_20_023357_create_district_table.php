@@ -14,8 +14,8 @@ class CreateDistrictTable extends Migration
     {
         Schema::create('R_districts', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name');
-            $table->text('chinese');
+            $table->string('name',2000)->nullable();
+            $table->string('chinese',2000)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

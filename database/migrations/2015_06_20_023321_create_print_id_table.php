@@ -15,6 +15,8 @@ class CreatePrintIdTable extends Migration
         Schema::create('members_print_card', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('member_id');
+            $table->dateTime('printed_at')->nullable();
+            $table->dateTime('received_at')->nullable();
             $table->timestamps();
         });
     }

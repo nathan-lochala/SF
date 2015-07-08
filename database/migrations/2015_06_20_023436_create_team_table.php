@@ -14,9 +14,10 @@ class CreateTeamTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name');
-            $table->text('description')->nullable();
+            $table->string('name',2000);
+            $table->string('description',2000)->nullable();
             $table->integer('leader_member_id')->nullable();
+            $table->integer('is_private')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

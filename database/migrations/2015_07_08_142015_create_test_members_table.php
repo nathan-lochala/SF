@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMemberTable extends Migration
+class CreateTestMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateMemberTable extends Migration
      */
     public function up()
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('members_test', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->string('first_name',2000)->index();
-            $table->string('last_name',2000)->nullable()->index();
+            $table->longText('first_name')->index();
+            $table->longText('last_name')->nullable()->index();
             $table->integer('family_id')->nullable(); //Which family does this member belong to?
-            $table->string('email',2000)->nullable()->index();
-            $table->string('mobile',2000)->nullable()->index();
+            $table->longText('email')->nullable()->index();
+            $table->longText('mobile')->nullable()->index();
             $table->integer('district_id')->nullable(); //Which district does this member live?
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateMemberTable extends Migration
      */
     public function down()
     {
-        Schema::drop('members');
+        Schema::drop('members_test');
     }
 }
