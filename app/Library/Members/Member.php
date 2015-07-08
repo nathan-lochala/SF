@@ -36,7 +36,8 @@ class Member extends Model
         'mobile',
         'family_id',
         'email',
-        'district_id'
+        'district_id',
+        'created_at'
     ];
 
     /**
@@ -234,6 +235,37 @@ class Member extends Model
             }
         }
         return $dropdown;
+    }
+
+    /**
+     * This takes the member parameters and cleans them.
+     *
+     * @param Member $member
+     *
+     * @return Member
+     */
+    public static function cleanMemberInputs(Member $member)
+    {
+        if(filter_var($member->email, FILTER_VALIDATE_EMAIL)){
+            //Valid Email
+            $email = trim($member->email);
+        }else{
+            //Invalid
+            $email = null;
+        }
+        if(!empty($member->mobile)){
+            $mobile = trim(preg_replace("/[^0-9,.]/", "", $member->mobile));
+        }else{
+            $mobile = null;
+        }
+        $member->update([
+            'first_name' => ucwords($member->first_name),
+            'last_name' => ucwords($member->last_name),
+            'email' => $email,
+            'mobile' => $mobile
+        ]);
+
+        return $member;
     }
 
 

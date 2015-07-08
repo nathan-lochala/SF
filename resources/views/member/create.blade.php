@@ -3,25 +3,53 @@
 @section('content')
 
 
-    @include('_content.title',['heading' => 'Add New Member','body' => 'Fill out the form below to add a new member to the SIF family.' ])
+
+    @if($member)
+        @include('_tiles.new-tiles')
+        {{-- Add tiles with tiles.tile --}}
+        @include('_tiles.new-tile',[
+        'url' => 'member/create',
+        'column_size' => 'col-md-12',
+        'color' => 'success',
+        'icon' => 'home',
+        'title' => 'Family Mode',
+        'body' => 'Click to exit family mode.'
+        ])
+        @include('_tiles.end-new-tiles')
+        @include('_content.title',['heading' => 'Add New Family Member <small>' . $member->last_name . ' Family</small>','body' => 'Fill out the form below to add a new member to the ' . $member->last_name . ' family.' ])
+    @else
+        @include('_content.title',['heading' => 'Add New Member','body' => 'Fill out the form below to add a new member to the SIF family.' ])
+    @endif
+
 
             <!----------------------------------------------------------------------------->
     <!----------------------------------------------------------------------------->
-    @include('_forms.new-head',['color' => 'panel-info'])
+    @if($member)
+        @include('_forms.new-head',['color' => 'panel-success'])
+    @else
+        @include('_forms.new-head',['color' => 'panel-info'])
+    @endif
+
             <!--NEW FORM-->
     {!! Form::open(['id' => 'admin-form','url' => 'member/create']) !!}
     @include('_forms.new-body')
     @include('_forms.new-row')
     @include('_forms.new-column',['column_size' => 'col-md-12'])
 
-    @include('member.form')
+    @include('member.new-member-form')
     @include('member.team-select')
 
     @include('_forms.end-new-column')
     @include('_forms.end-new-row')
     @include('_forms.end-new-body')
-    @include('_forms.end-new-head',['submit_title' => 'Add Member','submit_name' => 'submit','submit_id' => 'add'])
-            <!----------------------------------------------------------------------------->
+    @include('_forms.end-new-head',['submit_title' => 'Add Member','submit_name' => 'submit','submit_id' => 'add', 'extra_buttons' =>
+    // If you would like to add additional buttons, uncomment the arrays below.
+            [
+           ['color' => 'success','title' => 'Save and Add New Family Member','name' => 'new_family', 'type' => 'submit']
+    //        ['color' => '','title' => '','name' => '', 'type' => 'reset']
+            ]
+    ])
+    <!----------------------------------------------------------------------------->
     <!----------------------------------------------------------------------------->
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\District\District;
+use App\Member\Family;
 use App\Member\Member;
 use App\Member\PrintList;
 use App\Team\Team;
@@ -92,9 +93,20 @@ class MemberController extends Controller
      */
     public function create()
     {
+        $inputs = Request::all();
+        $member = null;
+        $email = null;
+        $mobile = null;
+        $district_id = null;
+        if(isset($inputs['family_id']) && $family_id = $inputs['family_id']){
+            $member = Member::where('family_id','=',$family_id)->first();
+            $email = $member->email;
+            $mobile = $member->mobile;
+            $district_id = $member->district_id;
+        }
         $district_list = District::districtDropdown();
         $member_list = Member::today()->orderBy('created_at','desc')->get();
-        return view('member.create',compact('district_list','member_list'));
+        return view('member.create',compact('district_list','member_list','member','email','mobile','district_id'));
     }
 
     /**
@@ -104,15 +116,18 @@ class MemberController extends Controller
      */
     public function store()
     {
-
         $inputs = Request::all();
-        $member = Member::create($inputs);
-        PrintList::create([
-            'member_id' => $member->id
-        ]);
-        $member->teamInterests()->attach($inputs['team_id']);
+        $member = $this->storeNewMember($inputs);
         if($member){
             flash()->success('Member added successfully!');
+        }
+        if(isset($inputs['new_family'])){
+            //Make sure member has a family
+            //pass the family id to the view
+            if( ! $member->family){
+                $member = $this->storeNewFamily($member);
+            }
+            return redirect('member/create?family_id=' . $member->family->id);
         }
         return redirect('member/create');
     }
@@ -169,6 +184,48 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->delete();
+        flash()->success('The member,' . $member->getFullName() . ' has been successfully removed from the SIF member list.');
+        return redirect(url('member/view_all'));
+    }
+
+    /*
+        |--------------------------------------------------------------------------
+        | HELPER METHODS
+        |--------------------------------------------------------------------------
+    */
+
+
+    /**
+     * Store a new member
+     *
+     * @param $inputs
+     *
+     * @return static
+     */
+    protected function storeNewMember($inputs)
+    {
+        $member = Member::cleanMemberInputs(Member::create($inputs));
+        PrintList::create([
+            'member_id' => $member->id
+        ]);
+        if(isset($inputs['team_id'])){
+            $member->teamInterests()->attach($inputs['team_id']);
+        }
+
+        return $member;
+    }
+
+    /**
+     * Give a member a family.
+     *
+     * @param $member
+     *
+     */
+    protected function storeNewFamily($member)
+    {
+        $family = Family::create();
+        $member->update(['family_id' => $family->id]);
+        return $member->load('family');
     }
 }

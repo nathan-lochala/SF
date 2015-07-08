@@ -20,8 +20,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        $monolog = Log::getMonolog();
-        dd($monolog);
+        $members = Member::all();
+        foreach($members as $member){
+            Member::cleanMemberInputs($member);
+        }
 
     }
 

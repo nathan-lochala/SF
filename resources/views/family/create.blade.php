@@ -18,9 +18,9 @@
     {{-- Add tiles with tiles.tile --}}
     @include('_tiles.new-tile',[
         'url' => 'member/' . $member->id,
-        'column_size' => 'col-md-12',
+        'column_size' => 'col-md-4',
         'color' => 'info',
-        'icon' => 'ICON',
+        'icon' => 'user',
         'title' => 'Back',
         'body' => 'Return to member dashboard.'
     ])

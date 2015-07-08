@@ -37,7 +37,7 @@
     @include('_forms.new-row')
     @include('_forms.new-column',['column_size' => 'col-md-12'])
     
-    @include('member.form')
+    @include('member.edit-member-form')
                 
     @include('_forms.end-new-column')
     @include('_forms.end-new-row')
