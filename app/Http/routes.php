@@ -63,6 +63,7 @@ Route::post('member/create','MemberController@store');
 Route::get('member/{member}','MemberController@show');
 Route::get('member/{member}/edit','MemberController@edit');
 Route::patch('member/{member}','MemberController@update');
+Route::get('member/{member}/delete','MemberController@destroy');
 
 /*
     |--------------------------------------------------------------------------

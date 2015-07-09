@@ -1,6 +1,6 @@
 <li>
     <a class="accordion-toggle {{ $menu_team or '' }}">
-        <span class="glyphicons glyphicons-temple_christianity_church"></span>
+        <span class="glyphicons glyphicons-globe_af"></span>
         <span class="sidebar-title">Teams</span>
         <span class="caret"></span>
     </a>
