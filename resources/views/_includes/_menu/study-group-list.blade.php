@@ -6,7 +6,7 @@
     </a>
     <ul class="nav sub-nav">
         <li>
-            <a href="{{ url('#') }}">
+            <a href="{{ url('study_group/create') }}">
                 <span class="glyphicons glyphicons-edit"></span>   Manage Groups </a>
         </li>
     </ul>

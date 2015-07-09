@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Member\Family;
 use App\Member\Member;
 use App\Member\PrintList;
+use App\StudyGroup\StudyGroup;
 use App\Team\Team;
 use App\User;
 use Illuminate\Routing\Router;
@@ -37,6 +38,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('user', User::class);
         $router->model('id_card', PrintList::class);
         $router->model('family', Family::class);
+        $router->model('study_group', StudyGroup::class);
     }
 
     /**

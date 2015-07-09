@@ -98,3 +98,15 @@ Route::get('idcard/{id_card}/received','IdCardController@received');
 */
 Route::get('family/create','FamilyController@create');
 Route::post('family/create','FamilyController@store');
+
+/*
+    |--------------------------------------------------------------------------
+    | STUDY GROUPS
+    |--------------------------------------------------------------------------
+*/
+Route::get('study_group/create','StudyGroupController@create');
+Route::post('study_group/create','StudyGroupController@store');
+Route::get('study_group/{study_group}/edit','StudyGroupController@edit');
+Route::patch('study_group/{study_group}','StudyGroupController@update');
+Route::get('study_group/{study_group}/delete','StudyGroupController@destroy');
+

@@ -22,7 +22,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('menu_team','menu-open');
         });
 
-        view()->composer(['study_groups/*'],function($view){
+        view()->composer(['study_group/*'],function($view){
             $view->with('menu_study_groups','menu-open');
         });
 

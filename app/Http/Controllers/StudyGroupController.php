@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\District\District;
+use App\Member\Member;
+use App\StudyGroup\StudyGroup;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Request;
 
 class StudyGroupController extends Controller
 {
@@ -26,7 +28,10 @@ class StudyGroupController extends Controller
      */
     public function create()
     {
-        //
+        $group_list = StudyGroup::all();
+        $district_list = District::districtDropdown();
+        $member_list = Member::memberDropdown(true);
+        return view('study_group.create',compact('group_list','district_list','member_list'));
     }
 
     /**
@@ -36,16 +41,27 @@ class StudyGroupController extends Controller
      */
     public function store()
     {
-        //
+        $inputs = Request::all();
+        $inputs['meeting_time'] = Carbon::parse($inputs['meeting_time']);
+        $group = StudyGroup::create($inputs);
+        if($group){
+            flash()->success('The study group, ' . $group->name . ' has been created');
+            return redirect(url('study_group/create'));
+        }
+
+        flash()->error('There was a problem creating the group. Please try again.');
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param StudyGroup $group
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(StudyGroup $group)
     {
         //
     }
@@ -53,33 +69,52 @@ class StudyGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param StudyGroup $group
+     *
      * @return Response
      */
-    public function edit($id)
+    public function edit(StudyGroup $group)
     {
-        //
+        $district_list = District::districtDropdown();
+        $member_list = Member::memberDropdown(true);
+        return view('study_group.edit',compact('district_list','member_list','group'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param StudyGroup $group
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function update($id)
+    public function update(StudyGroup $group)
     {
-        //
+        $inputs = Request::all();
+        $inputs['meeting_time'] = Carbon::parse($inputs['meeting_time']);
+        $group->update($inputs);
+        if($group){
+            flash()->success('The study group, ' . $group->name . ' has been updated.');
+            return redirect(url('study_group/create'));
+        }
+
+        flash()->error('There was a problem updating the group. Please try again.');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param StudyGroup $group
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(StudyGroup $group)
     {
-        //
+        $group->delete();
+        flash()->success('The group has been successfully deleted.');
+
+        return redirect()->back();
     }
 }

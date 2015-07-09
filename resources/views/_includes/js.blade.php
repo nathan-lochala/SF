@@ -22,6 +22,13 @@
 <!-- MaskedInput Plugin -->
 <script src={{ asset('vendor/plugins/jquerymask/jquery.maskedinput.min.js') }}></script>
 
+<!-- Time/Date Plugin Dependencies -->
+<script src={{ asset('vendor/plugins/globalize/globalize.min.js') }}></script>
+<script src={{ asset('vendor/plugins/moment/moment.min.js') }}></script>
+
+<!-- DateTime Plugin -->
+<script src={{ asset('vendor/plugins/datepicker/js/bootstrap-datetimepicker.js') }}></script>
+
 <!-- Datatables  -->
 <script src={{ asset('vendor/plugins/datatables/media/js/jquery.dataTables.js') }}></script>
 
