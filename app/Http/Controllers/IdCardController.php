@@ -85,7 +85,11 @@ class IdCardController extends Controller
      */
     public function index()
     {
-        //
+        // ID Card Dashboard
+        $print_list = PrintList::printing()->with('member')->get(); //Those that have NOT been printed yet.
+        $receive_list = PrintList::receiving()->with('member')->get(); //Those that have NOT been delivered yet.
+
+        return view('idcard.index',compact('print_list','receive_list'));
     }
 
     /**

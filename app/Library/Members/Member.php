@@ -2,6 +2,7 @@
 
 namespace App\Member;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -47,6 +48,13 @@ class Member extends Model
      */
     protected $table = 'members';
 
+    /*
+        |--------------------------------------------------------------------------
+        | ATTRIBUTES
+        |--------------------------------------------------------------------------
+    */
+
+
     /**
      * Return the email as a pre-formatted URL
      *
@@ -58,6 +66,30 @@ class Member extends Model
             return '<a href="mailto:' . $email . '">' . $email . '</a>';
         }
         return 'N/A';
+    }
+
+    /**
+     * Return the member's fullname.
+     *
+     * @param bool|FALSE $is_last_name_first
+     *
+     * @param bool       $make_url
+     *
+     * @return string
+     */
+    public function getFullName($is_last_name_first = FALSE, $make_url = FALSE)
+    {
+        if($is_last_name_first){
+            $name = $this->last_name . ', ' . $this->first_name;
+        }else{
+            $name = $this->first_name . ' ' . $this->last_name;
+        }
+
+        if($make_url){
+            return '<a href="' . url('member/' . $this->id) . '">' . $name . '</a>';
+        }
+
+        return $name;
     }
 
 
@@ -182,28 +214,25 @@ class Member extends Model
         return $this->belongsTo('App\District\District','district_id');
     }
 
+    /*
+        |--------------------------------------------------------------------------
+        | HELPER METHODS
+        |--------------------------------------------------------------------------
+    */
+
+
     /**
-     * Return the member's fullname.
+     * Checks whether the email is found in the user list.
      *
-     * @param bool|FALSE $is_last_name_first
-     *
-     * @param bool       $make_url
-     *
-     * @return string
+     * @return bool
      */
-    public function getFullName($is_last_name_first = FALSE, $make_url = FALSE)
+    public function emailUnique()
     {
-        if($is_last_name_first){
-            $name = $this->last_name . ', ' . $this->first_name;
-        }else{
-            $name = $this->first_name . ' ' . $this->last_name;
+        if(User::where('email','=',$this->email)->get()->isEmpty()){
+            return true;
         }
 
-        if($make_url){
-            return '<a href="' . url('member/' . $this->id) . '">' . $name . '</a>';
-        }
-
-        return $name;
+        return false;
     }
 
     /**

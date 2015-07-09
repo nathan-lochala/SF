@@ -26,7 +26,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('menu_study_groups','menu-open');
         });
 
-        view()->composer(['idcards/*'],function($view){
+        view()->composer(['idcard/*'],function($view){
             $view->with('menu_idcards','menu-open');
         });
 

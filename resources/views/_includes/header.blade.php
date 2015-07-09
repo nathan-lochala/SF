@@ -11,17 +11,17 @@
 
     @include('_includes.header-leftside-icons')
 
-    @include('_includes.header-search')
+    {{--@include('_includes.header-search')--}}
 
 
 {{--START RIGHT-SIDE TOP BAR SECTION--}}
     <ul class="nav navbar-nav navbar-right">
 
-        @include('_includes.header-notification')
+        {{--@include('_includes.header-notification')--}}
 
-        @include('_includes.header-language')
+        {{--@include('_includes.header-language')--}}
 
-        @include('_includes.header-divider')
+        {{--@include('_includes.header-divider')--}}
 
         @include('_includes.header-account')
 

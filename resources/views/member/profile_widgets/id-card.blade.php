@@ -12,7 +12,7 @@
     <em>ID Card has not been added to the list. This is probably due to the fact that this member pre-dates the creation of the portal.</em>
     <br />
     <br />
-    <a style="width: 25%; float: left; bottom: 10px; right: 10px" href="{{ url('print/store?member_id=' . $member->id ) }}">
+    <a style="width: 25%; float: left; bottom: 10px; right: 10px" href="{{ url('idcard/store?member_id=' . $member->id ) }}">
         @include('_buttons.click-button',[
             'size' => 'xs',
             'color' => 'primary',
@@ -42,7 +42,7 @@
                 </td>
                 <td style="width: 25%;">
                     @if( ! $card->received_at)
-                        <a href="{{ url('print/' . $card->id . '/received') }}">
+                        <a href="{{ url('idcard/' . $card->id . '/received') }}">
                             @include('_buttons.click-button',[
                                 'size' => 'xs',
                                 'color' => 'warning',
@@ -52,7 +52,7 @@
                     @endif
                 </td>
                 <td style="width: 25%;">
-                    <a href="{{ url('print/' . $card->id . '/reprint') }}">
+                    <a href="{{ url('idcard/' . $card->id . '/reprint') }}">
                         @include('_buttons.click-button',[
                             'size' => 'xs',
                             'color' => 'primary',

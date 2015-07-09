@@ -32,8 +32,17 @@
 @else
     @if(!$member->email)
         <h3>The member does not have an email setup. <a href="{{ url('member/' . $member->id . '/edit') }}">Click here to add one.</a> </h3>
-        @else
-                <!----------------------------------------------------------------------------->
+
+
+    @elseif(!$member->emailUnique())
+        {{--This means that their email is not unique and they need to change it before they can be added as a user.--}}
+        <h3>Email address: {{ $member->email }}</h3>
+        <h5>The member does not have a UNIQUE email setup. That means that there is a user who already is assigned the given email address.
+            The member needs to change their email address before they can be added as a user. <a href="{{ url('member/' . $member->id . '/edit') }}">Click to change email.</a> </h5>
+    @else
+
+
+        <!----------------------------------------------------------------------------->
         <!----------------------------------------------------------------------------->
         <h2>Create User From Member</h2>
         <h3>Note:</h3>

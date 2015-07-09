@@ -82,15 +82,19 @@ Route::get('team/{team}/delete','TeamController@destroy');
     | PRINT ID CARDS
     |--------------------------------------------------------------------------
 */
-ROUTE::get('print/store','IdCardController@store');
-ROUTE::get('print/{id_card}/reprint','IdCardController@reprint');
-ROUTE::get('print/{id_card}/printed','IdCardController@printed');
-ROUTE::get('print/{id_card}/received','IdCardController@received');
+
+Route::get('idcard','IdCardController@index');
+Route::get('idcard/store','IdCardController@store');
+
+    //Modify ID Cards
+Route::get('idcard/{id_card}/reprint','IdCardController@reprint');
+Route::get('idcard/{id_card}/printed','IdCardController@printed');
+Route::get('idcard/{id_card}/received','IdCardController@received');
 
 /*
     |--------------------------------------------------------------------------
     | FAMILY
     |--------------------------------------------------------------------------
 */
-ROUTE::get('family/create','FamilyController@create');
-ROUTE::post('family/create','FamilyController@store');
+Route::get('family/create','FamilyController@create');
+Route::post('family/create','FamilyController@store');

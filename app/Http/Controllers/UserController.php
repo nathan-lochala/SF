@@ -32,7 +32,7 @@ class UserController extends Controller
 
         if($password == $password_confirm){
             $user->update(['password' => bcrypt($password)]);
-            flash()->overlay('This user\'s password has been reset to: ' . $password,'Success');
+            flash()->overlay('The user\'s password as been successfully reset.<br />Username:<strong> ' . $user->email . '</strong><br />New Password: <strong>' . $password . '</strong>','Success');
             return redirect()->back();
         }
 

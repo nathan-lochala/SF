@@ -6,7 +6,7 @@
     </a>
     <ul class="nav sub-nav">
         <li>
-            <a href="{{ url('#') }}">
+            <a href="{{ url('print') }}">
                 <span class="glyphicons glyphicons-edit"></span>   Manage ID Cards </a>
         </li>
     </ul>

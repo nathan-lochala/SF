@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\District\District;
 use App\Member\Member;
+use App\Member\PrintList;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
-        foreach($members as $member){
-            Member::cleanMemberInputs($member);
-        }
+
 
     }
 
