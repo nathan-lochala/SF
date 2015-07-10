@@ -71,6 +71,17 @@ class IdCardController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Display a table that can be exported for importing to Photoshop
+     *
+     * @return \Illuminate\View\View
+     */
+    public function export()
+    {
+        $print_list = PrintList::printing()->with('member')->get();
+        return view('idcard.export',compact('print_list'));
+    }
+
     /*
         |--------------------------------------------------------------------------
         | CRUD METHODS

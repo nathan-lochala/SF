@@ -11,6 +11,95 @@ use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
+
+    /*
+        |--------------------------------------------------------------------------
+        | CUSTOM METHODS
+        |--------------------------------------------------------------------------
+    */
+
+
+    /**
+     * Display the "Add Members" form
+     *
+     * @param Team $team
+     *
+     * @return \Illuminate\View\View
+     */
+    public function addMembers(Team $team)
+    {
+        $member_list = Member::memberDropdown(true);
+        return view('team.add_members',compact('member_list','team'));
+    }
+
+    /**
+     * Add members to a team
+     *
+     * @param Team $team
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function storeAddMembers(Team $team)
+    {
+        $member_list = Request::all()['member_id'];
+        $team->members()->attach($member_list);
+
+        return redirect(url('team/' . $team->id));
+    }
+
+    /**
+     * Remove a member from a team
+     *
+     * @param Team   $team
+     * @param Member $member
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeMember(Team $team, Member $member)
+    {
+        $team->members()->detach($member->id);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Add a member to a team that has previously expressed interest in joining.
+     *
+     * @param Team   $team
+     * @param Member $member
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addMember(Team $team, Member $member)
+    {
+        $team->members()->attach($member->id);
+        $team->interestedMembers()->detach($member->id);
+
+        return redirect()->back();
+    }
+
+
+    /**
+     * This will clear out all the interested members from the team.
+     *
+     * @param Team $team
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeInterstedMembers(Team $team)
+    {
+        $team->interestedMembers()->detach();
+
+        return redirect()->back();
+    }
+
+
+    /*
+        |--------------------------------------------------------------------------
+        | CRUD METHODS
+        |--------------------------------------------------------------------------
+    */
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +108,7 @@ class TeamController extends Controller
     public function index()
     {
         $member_list = Member::memberDropdown(true);
-        $team_list = Team::all();
+        $team_list = Team::orderBy('name','asc')->get();
         return view('team.index',compact('member_list','team_list'));
     }
 
@@ -53,12 +142,17 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Team $team
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(Team $team)
     {
-        //
+        $member_list = $team->members;
+        $interests_list = $team->interestedMembers;
+
+        return view('team.show',compact('member_list','interests_list','team'));
     }
 
     /**

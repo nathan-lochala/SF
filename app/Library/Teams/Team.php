@@ -29,25 +29,25 @@ class Team extends Model
     protected $table = 'teams';
 
     /**
-    *  This team belongs to many members
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    */
+     *  This team belongs to many members
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function members()
     {
-        // belongsToMany('class','pivot_table','id')
-        return $this->belongsToMany('App\Member\Member','R_teams_members_pivot','team_id');
+        // belongsToMany('class','pivot_table','current_models_id','foreign_id')->withTimestamps()
+        return $this->belongsToMany('App\Member\Member', 'R_teams_members_pivot', 'team_id', 'member_id')->withTimestamps();
     }
 
     /**
-    *  This team belongs to many interestedMembers
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    */
+     *  This team belongs to many interestedMembers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function interestedMembers()
     {
-        // belongsToMany('class','pivot_table','id')
-        return $this->belongsToMany('App\Member\Member','R_teams_interested_pivot','team_id');
+        // belongsToMany('class','pivot_table','current_models_id','foreign_id')->withTimestamps()
+        return $this->belongsToMany('App\Member\Member', 'R_teams_interests_pivot', 'team_id', 'member_id')->withTimestamps();
     }
 
     /**
@@ -57,7 +57,7 @@ class Team extends Model
      */
     public function teamLeader()
     {
-        return $this->belongsTo('App\Member\Member','leader_member_id');
+        return $this->belongsTo('App\Member\Member', 'leader_member_id');
     }
 
 
@@ -72,8 +72,8 @@ class Team extends Model
     {
         $select_array = [];
         $teams = static::all();
-        foreach($teams as $team){
-            $select_array = static::checkSelectArray($member,$team,$select_array);
+        foreach ($teams as $team) {
+            $select_array = static::checkSelectArray($member, $team, $select_array);
         }
 
         return $select_array;
@@ -94,13 +94,13 @@ class Team extends Model
     {
         $checked = '';
 
-        if($member && $member->teamInterests->contains($object)){
+        if ($member && $member->teamInterests->contains($object)) {
             $checked = 'checked';
         }
 
         $select_array[$object->name . ' - Lead by: ' . $object->teamLeader->getFullName()] = [    // This is what is displayed as a select option.
             'checked' => $checked, // Either checked or ''
-            'value' => $object->id      // This is the ID that you want returned.
+            'value'   => $object->id      // This is the ID that you want returned.
         ];
 
         return $select_array;
@@ -115,11 +115,52 @@ class Team extends Model
     {
         $dropdown = [];
         $teams = static::all();
-        foreach($teams as $team){
+        foreach ($teams as $team) {
             $dropdown[$team->id] = $team->name . ' - Lead by: ' . $team->teamLeader->getFullName();
         }
 
         return $dropdown;
+    }
+
+    /*
+        |--------------------------------------------------------------------------
+        | CUSTOM QUERIES
+        |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Returns a number of all the members in the team
+     *
+     * @return int
+     */
+    public static function allMembersCount()
+    {
+        $members = 0;
+        $teams = static::all();
+        if ( ! $teams->isEmpty()) {
+            foreach ($teams as $team) {
+                $members += $team->members()->count();
+            }
+        }
+
+        return $members;
+    }
+
+    /**
+     * Returns a number of all the interested members in the team
+     *
+     * @return int
+     */
+    public static function allInterestedMembersCount()
+    {
+        $members = 0;
+        $teams = static::all();
+        if ( ! $teams->isEmpty()) {
+            foreach ($teams as $team) {
+                $members += $team->interestedMembers()->count();
+            }
+        }
+        return $members;
     }
 
 

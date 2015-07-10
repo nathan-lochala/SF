@@ -75,7 +75,7 @@ class StudyGroupController extends Controller
      */
     public function index()
     {
-        $group_list = StudyGroup::all()->load('members');
+        $group_list = StudyGroup::orderBy('name','asc')->with('members')->get();
         return view('study_group.index',compact('group_list'));
     }
 

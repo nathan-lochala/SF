@@ -184,8 +184,14 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
+        $card_list = $member->idCard;
+        if(!$card_list->isEmpty()) {
+            foreach($card_list as $idcard){
+                $idcard->delete();
+            }
+        }
         $member->delete();
-        flash()->success('The member,' . $member->getFullName() . ' has been successfully removed from the SIF member list.');
+        flash()->success('The member, ' . $member->getFullName() . ' has been successfully removed from the SIF member list.');
         return redirect(url('member/view_all'));
     }
 

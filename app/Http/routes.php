@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect(url('member/create'));
-});
+Route::get('/', 'InitialController@index');
 
-Route::get('home', function () {
-    return redirect(url('member/create'));
-});
+Route::get('home', 'InitialController@index');
 
 /*
     |--------------------------------------------------------------------------
@@ -67,18 +63,6 @@ Route::get('member/{member}/delete','MemberController@destroy');
 
 /*
     |--------------------------------------------------------------------------
-    | TEAMS
-    |--------------------------------------------------------------------------
-*/
-Route::get('team','TeamController@index');
-Route::get('team/create','TeamController@create');
-Route::post('team/create','TeamController@store');
-Route::get('team/{team}/edit','TeamController@edit');
-Route::patch('team/{team}','TeamController@update');
-Route::get('team/{team}/delete','TeamController@destroy');
-
-/*
-    |--------------------------------------------------------------------------
     | PRINT ID CARDS
     |--------------------------------------------------------------------------
 */
@@ -90,6 +74,9 @@ Route::get('idcard/store','IdCardController@store');
 Route::get('idcard/{id_card}/reprint','IdCardController@reprint');
 Route::get('idcard/{id_card}/printed','IdCardController@printed');
 Route::get('idcard/{id_card}/received','IdCardController@received');
+
+    //Export
+Route::get('idcard/export','IdCardController@export');
 
 /*
     |--------------------------------------------------------------------------
@@ -116,8 +103,31 @@ Route::get('study_group/{study_group}/edit','StudyGroupController@edit');
 Route::patch('study_group/{study_group}','StudyGroupController@update');
     //Delete
 Route::get('study_group/{study_group}/delete','StudyGroupController@destroy');
-Route::get('study_group','StudyGroupController@index');
-    //Index
+    //View
 Route::get('study_group/{study_group}','StudyGroupController@show');
+    //Index
+Route::get('study_group','StudyGroupController@index');
 
-
+/*
+    |--------------------------------------------------------------------------
+    | TEAMS
+    |--------------------------------------------------------------------------
+*/
+    //Manage Members
+Route::get('team/{team}/add/{member}','TeamController@addMember');
+Route::get('team/{team}/clear_interests','TeamController@removeInterstedMembers');
+Route::get('team/{team}/add_members','TeamController@addMembers');
+Route::get('team/{team}/remove_member/{member}','TeamController@removeMember');
+Route::post('team/{team}/add_members','TeamController@storeAddMembers');
+    //Create
+Route::get('team/create','TeamController@create');
+Route::post('team/create','TeamController@store');
+    //Edit
+Route::get('team/{team}/edit','TeamController@edit');
+Route::patch('team/{team}','TeamController@update');
+    //Delete
+Route::get('team/{team}/delete','TeamController@destroy');
+    //View
+Route::get('team/{team}','TeamController@show');
+    //Index
+Route::get('team','TeamController@index');
