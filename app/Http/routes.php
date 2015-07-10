@@ -104,9 +104,20 @@ Route::post('family/create','FamilyController@store');
     | STUDY GROUPS
     |--------------------------------------------------------------------------
 */
+    //Manage Members
+Route::get('study_group/{study_group}/add_members','StudyGroupController@addMembers');
+Route::post('study_group/{study_group}/add_members','StudyGroupController@storeAddMembers');
+Route::get('study_group/{study_group}/remove_member/{member}','StudyGroupController@removeMember');
+    //Create
 Route::get('study_group/create','StudyGroupController@create');
 Route::post('study_group/create','StudyGroupController@store');
+    //Edit
 Route::get('study_group/{study_group}/edit','StudyGroupController@edit');
 Route::patch('study_group/{study_group}','StudyGroupController@update');
+    //Delete
 Route::get('study_group/{study_group}/delete','StudyGroupController@destroy');
+Route::get('study_group','StudyGroupController@index');
+    //Index
+Route::get('study_group/{study_group}','StudyGroupController@show');
+
 

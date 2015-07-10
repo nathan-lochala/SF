@@ -11,6 +11,63 @@ use Request;
 
 class StudyGroupController extends Controller
 {
+
+    /*
+        |--------------------------------------------------------------------------
+        | CUSTOM METHODS
+        |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Add members to a study group
+     *
+     * @param StudyGroup $group
+     *
+     * @return \Illuminate\View\View
+     */
+    public function addMembers(StudyGroup $group)
+    {
+        $member_list = Member::memberDropdown(true);
+        return view('study_group.add_members',compact('member_list','group'));
+    }
+
+    /**
+     * Bulk add users to a study group
+     *
+     * @param StudyGroup $group
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function storeAddMembers(StudyGroup $group)
+    {
+        $member_list = Request::all()['member_id'];
+        $group->members()->attach($member_list);
+
+        return redirect(url('study_group/' . $group->id));
+    }
+
+    /**
+     * Remove a selected member from a study group
+     *
+     * @param StudyGroup $group
+     * @param Member     $member
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeMember(StudyGroup $group, Member $member)
+    {
+        $group->members()->detach($member->id);
+
+        return redirect()->back();
+    }
+
+    /*
+        |--------------------------------------------------------------------------
+        | CRUD METHODS
+        |--------------------------------------------------------------------------
+    */
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +75,8 @@ class StudyGroupController extends Controller
      */
     public function index()
     {
-        //
+        $group_list = StudyGroup::all()->load('members');
+        return view('study_group.index',compact('group_list'));
     }
 
     /**
@@ -63,7 +121,8 @@ class StudyGroupController extends Controller
      */
     public function show(StudyGroup $group)
     {
-        //
+        $member_list = $group->members;
+        return view('study_group.show',compact('group','member_list'));
     }
 
     /**
@@ -95,7 +154,7 @@ class StudyGroupController extends Controller
         $group->update($inputs);
         if($group){
             flash()->success('The study group, ' . $group->name . ' has been updated.');
-            return redirect(url('study_group/create'));
+            return redirect(url('study_group/' . $group->id));
         }
 
         flash()->error('There was a problem updating the group. Please try again.');
