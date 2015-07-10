@@ -200,7 +200,7 @@ class Member extends Model
     */
     public function studyGroups()
     {
-        // belongsToMany('class','pivot_table','id')
+        // belongsToMany('class','pivot_table','id')->withTimeStamps()
         return $this->belongsToMany('App\StudyGroup\StudyGroup','R_study_groups_member_pivot','member_id','study_group_id')->withTimestamps();
     }
     

@@ -83,6 +83,16 @@ class District extends Model
         return $this->hasMany('App\StudyGroup\StudyGroup','study_group_id');
     }
 
+    /**
+     * Return a pre-formatted name
+     *
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->name . ' - ' . $this->chinese;
+    }
+
 
     /**
      * Get a dropdown list of all the districts

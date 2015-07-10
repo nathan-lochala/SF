@@ -9,5 +9,9 @@
             <a href="{{ url('study_group/create') }}">
                 <span class="glyphicons glyphicons-edit"></span>   Manage Groups </a>
         </li>
+        <li>
+            <a href="{{ url('study_group') }}">
+                <span class="fa fa-folder-open"></span>   View All Groups </a>
+        </li>
     </ul>
 </li>

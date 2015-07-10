@@ -3,6 +3,7 @@
 namespace App\StudyGroup;
 
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -69,7 +70,53 @@ class StudyGroup extends Model
      */
     public function members()
     {
-        return $this->belongsToMany('App\Member\Member','R_study_groups_member_pivot','member_id');
+        // belongsToMany('class','pivot_table','current_models_id','foreign_id')
+        return $this->belongsToMany('App\Member\Member','R_study_groups_member_pivot','study_group_id','member_id')->withTimestamps();
+    }
+
+
+    /**
+     *  This group belongs to a Team Leader
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function leader()
+    {
+        return $this->belongsTo('App\Member\Member','leader_member_id');
+    }
+
+    /**
+     *  This group belongs to a District
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function district()
+    {
+        return $this->belongsTo('App\District\District','district_id');
+    }
+
+    /*
+        |--------------------------------------------------------------------------
+        | CUSTOM QUERIES
+        |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Returns a number of all the members in the study groups
+     *
+     * @return int
+     */
+    public static function allMembersCount()
+    {
+        $members = 0;
+        $groups = static::all();
+        if(!$groups->isEmpty()){
+            foreach($groups as $group){
+                $members += $group->members()->count();
+            }
+        }
+
+        return $members;
     }
 
 }
