@@ -25,9 +25,8 @@ class TestController extends Controller
     public function index()
     {
         $member = Member::find(258);
-        var_dump($member);
         $test = Mail::queueOn('email','emails.test',['member' => $member], function ($email) use ($member) {
-            $email->to($member->email, $member->name)->subject('My Test Message');
+            $email->to($member->email, $member->getFullName())->subject('My Test Message');
         });
         echo '<br />';
 
