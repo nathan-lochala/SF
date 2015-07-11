@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\District\District;
 use App\Member\Member;
 use App\Member\PrintList;
+use App\User;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Log;
+use Mail;
 
 class TestController extends Controller
 {
@@ -21,8 +24,13 @@ class TestController extends Controller
      */
     public function index()
     {
-
-
+        $member = Member::find(258);
+        var_dump($member);
+        $test = Mail::queueOn('email','emails.test',['user' => $member], function ($email) use ($member) {
+            $email->to($member->email, $member->name)->subject('My Test Message');
+        });
+        echo '<br />';
+        var_dump($member);
     }
 
     /**
