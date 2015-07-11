@@ -24,12 +24,15 @@ class TestController extends Controller
      */
     public function index()
     {
-        $member = Member::find(258);
-        $test = Mail::queueOn('email','emails.test',['member' => $member], function ($email) use ($member) {
-            $email->to($member->email, 'Nathan')->subject('My Test Message');
+
+        $test = Mail::send('emails.test',[], function ($email)  {
+            $email->to('nathan@captivating.org', 'Nathan Lochala')->subject('My Test Message');
+        });
+
+        $test = Mail::queue('emails.queue',[], function ($email) {
+            $email->to('nathan@captivating.org', 'Nathan Lochala')->subject('My Test Message');
         });
         echo '<br />';
-
         var_dump($test);
     }
 
