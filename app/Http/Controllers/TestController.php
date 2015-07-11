@@ -30,6 +30,7 @@ class TestController extends Controller
             $email->to($member->email, $member->name)->subject('My Test Message');
         });
         echo '<br />';
+        
         var_dump($member);
     }
 
