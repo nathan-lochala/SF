@@ -4,29 +4,45 @@ This application is designed to help SIF to manage different aspects of their me
 with the help of a number of SIF members.
 
 ### Development Roadmap
-
-#### V1 - Initial Release
-##### -- Members
+#### V1.3 - Coming Late July 2015
+##### -- Sunday School
 <ul>
-    <li>Add New Members</li>
-    <ul>
-    <li>JQuery Validation for New Members</li>
-    <li>Only Accept Unique Members</li>
-    </ul>
-    <li>Search Members</li>
+    <li>Create Sunday School Section</li>
+    <li>Health Form for Children Attending Sunday School</li>
 </ul>
-##### -- Teams
+---
+
+### Development Changelog
+#### V1.2
+##### -- Visitors
 <ul>
-    <li>Manage and Add New Teams</li>
+    <li>Visitor registration page.</li>
+</ul>
+##### -- Email
+<ul>
+    <li>Setup Mandrill email provider</li>
+    <li>Install Pheadstalk queue service</li>
 </ul>
 ##### -- Users
 <ul>
-    <li>Added Ability to Lock-down and Restrict Access to Portal</li>
+    <li>Create user table to easily manage users</li>
+    <li>An email is sent out anytime a new user is created.</li>
+</ul>
+##### -- ID Cards
+<ul>
+    <li>Created a quick entry for managing the initial 300+ ID Cards that have been printed.</li>
+    <li>Added a "Mark As Printed" button to member ID Card table.</li>
+</ul>
+##### -- Members
+<ul>
+    <li>Created a "Recover Deleted Members" table.</li>
+    <li>Add delete button to the "Today's New Members" table.</li>
 </ul>
 
 ---
 
-#### V1.1 - Coming Late July 2015
+
+#### V1.1
 ##### -- Members
 <ul>
     <li>Export New Members ID Cards</li>
@@ -54,19 +70,27 @@ with the help of a number of SIF members.
 </ul>
 
 ---
-#### V1.2 - Coming August 2015
-##### -- Guests
+
+#### V1 - Initial Release
+##### -- Members
 <ul>
-    <li>Guests Sign-in Page</li>
+    <li>Add New Members</li>
     <ul>
-        <li>Generates opportunities for followup by giving SIF a record of who came as a guest.</li>
+    <li>JQuery Validation for New Members</li>
+    <li>Only Accept Unique Members</li>
     </ul>
+    <li>Search Members</li>
 </ul>
-##### -- ID Card
+##### -- Teams
 <ul>
-    <li>Label printer that can print temporary name tags for guests and those members who forgot their ID Card.</li>
-    <li>Template for label listing out their name, date, and whether they are a visitor or member.</li>
+    <li>Manage and Add New Teams</li>
 </ul>
+##### -- Users
+<ul>
+    <li>Added Ability to Lock-down and Restrict Access to Portal</li>
+</ul>
+
+---
 
 ### Framework Documentation
 
@@ -80,6 +104,6 @@ technical or other information in the material contained in this Web Site (SIF P
 (including, without limitation, photographs and graphical images) constitute and 
 remain the sole property of Shenzhen International Fellowship. 
 
-Copyright ©2015 SIF | Nathan Lochala
+Copyright ©2015 Shenzhen International Fellowship
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

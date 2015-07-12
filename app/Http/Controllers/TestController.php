@@ -27,8 +27,6 @@ class TestController extends Controller
         $test = Mail::queue('emails.queue',[], function ($email) {
             $email->to('nathan@captivating.org', 'Nathan Lochala')->subject('My Test Message');
         });
-        echo '<br />';
-        var_dump($test);
     }
 
     /**
