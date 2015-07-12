@@ -24,11 +24,6 @@ class TestController extends Controller
      */
     public function index()
     {
-
-        $test = Mail::send('emails.test',[], function ($email)  {
-            $email->to('nathan@captivating.org', 'Nathan Lochala')->subject('My Test Message');
-        });
-
         $test = Mail::queue('emails.queue',[], function ($email) {
             $email->to('nathan@captivating.org', 'Nathan Lochala')->subject('My Test Message');
         });
