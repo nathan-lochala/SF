@@ -15,7 +15,7 @@
     <a style="width: 25%; float: left; bottom: 10px; right: 10px" href="{{ url('idcard/store?member_id=' . $member->id ) }}">
         @include('_buttons.click-button',[
             'size' => 'xs',
-            'color' => 'primary',
+            'color' => 'info',
             'text' => 'Print ID Card',
             'icon' => 'fa fa-print'
         ])</a>
@@ -45,7 +45,7 @@
                         <a href="{{ url('idcard/' . $card->id . '/received') }}">
                             @include('_buttons.click-button',[
                                 'size' => 'xs',
-                                'color' => 'warning',
+                                'color' => 'info',
                                 'text' => 'Mark as Delivered',
                                 'icon' => 'fa fa-check'
                             ])</a>
@@ -55,7 +55,7 @@
                     <a href="{{ url('idcard/' . $card->id . '/reprint') }}">
                         @include('_buttons.click-button',[
                             'size' => 'xs',
-                            'color' => 'primary',
+                            'color' => 'warning',
                             'text' => 'Re-print ID Card',
                             'icon' => 'fa fa-print'
                         ])</a>

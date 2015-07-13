@@ -71,13 +71,13 @@
         <em>There are no ID Cards that have yet to be printed.</em>
     @else
             <!-- TABLE OF Print Pending -->
-        @include('_tables.new-table',['id' => 'print_pending', 'table_head' => ['ID','Name','Added to List','']])
+        @include('_tables.new-table',['id' => 'print_pending', 'table_head' => ['ID','Name','Added to List','','']])
         @foreach($print_list as $print)
             <tr>
                 <td>{{ $print->member->id }}</td>
                 <td>{!! $print->member->getFullName(true,true) !!}</td>
                 <td>{{ Carbon\Carbon::parse($print->created_at)->format('M d, Y') }}</td>
-                <td>
+                <td style="width: 25%;">
                     <a href="{{ url('idcard/' . $print->id . '/printed') }}">
                         @include('_buttons.click-button',[
                             'size' => 'xs',
@@ -85,6 +85,16 @@
                             'text' => 'Mark as Printed',
                             'icon' => 'fa fa-check'
                         ])</a>
+                </td>
+                <td style="width: 25%;">
+                    <a href="{{ url('idcard/' . $print->id . '/delete') }}">
+                        @include('_buttons.click-button',[
+                            'size' => 'xs',
+                            'color' => 'danger',
+                            'text' => 'Delete',
+                            'icon' => 'fa fa-trash'
+                        ])
+                    </a>
                 </td>
             </tr>
         @endforeach
@@ -118,13 +128,13 @@
         <em>There are no ID Cards that have yet to be printed.</em>
         @else
                 <!-- TABLE OF Print Pending -->
-        @include('_tables.new-table',['id' => 'print_pending', 'table_head' => ['ID','Name','Printed On','']])
+        @include('_tables.new-table',['id' => 'delivery_pending', 'table_head' => ['ID','Name','Printed On','','']])
         @foreach($receive_list as $receive)
             <tr>
                 <td>{{ $receive->member->id }}</td>
                 <td>{!! $receive->member->getFullName(true,true) !!}</td>
                 <td>{{ Carbon\Carbon::parse($receive->printed_at)->format('M d, Y') }}</td>
-                <td>
+                <td style="width: 25%;">
                     <a href="{{ url('idcard/' . $receive->id . '/received') }}">
                         @include('_buttons.click-button',[
                             'size' => 'xs',
@@ -157,5 +167,30 @@
     @include('_panels.end-new-row')
     @include('_panels.end')
 
+@stop
+
+
+@section('js')
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            $('#delivery_pending').DataTable({
+                "dom": 'f<"clear">Trtip<"clear">l',
+                "tableTools": {
+                    "sSwfPath": '{{ asset('vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}'
+                }
+            });
+
+            $('#print_pending').DataTable({
+                "dom": 'f<"clear">Trtip<"clear">l',
+                "tableTools": {
+                    "sSwfPath": '{{ asset('vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf') }}'
+                }
+            });
+
+
+
+        });
+    </script>
 @stop
 

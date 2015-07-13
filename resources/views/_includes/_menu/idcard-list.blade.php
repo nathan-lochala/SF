@@ -13,5 +13,9 @@
             <a href="{{ url('idcard/export') }}">
                 <span class="glyphicons glyphicons-print"></span>   Export List </a>
         </li>
+        <li>
+            <a href="{{ url('idcard/import') }}">
+                <span class="glyphicons glyphicons-file_import"></span>   Import Existing </a>
+        </li>
     </ul>
 </li>

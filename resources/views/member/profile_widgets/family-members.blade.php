@@ -11,7 +11,7 @@
 <a style="width: 25%; float:left; bottom: 10px; right: 10px" href="{{ url('family/create/?member_id=' . $member->id) }}">
     @include('_buttons.click-button',[
         'size' => 'xs',
-        'color' => 'primary',
+        'color' => 'system',
         'text' => 'Add Family Members',
         'icon' => 'fa fa-plus'
     ])</a>

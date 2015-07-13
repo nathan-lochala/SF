@@ -32,4 +32,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     *  This user belongs to a member
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function member()
+    {
+        return $this->belongsTo('App\Member\Member','member_id');
+    }
 }

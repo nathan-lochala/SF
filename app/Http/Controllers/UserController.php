@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserEdit;
 use App\Member\Member;
 use App\User;
 
@@ -41,10 +42,11 @@ class UserController extends Controller
 
     }
 
-
-
-
-
+    /*
+        |--------------------------------------------------------------------------
+        | CRUD METHODS
+        |--------------------------------------------------------------------------
+    */
 
     /**
      * Display a listing of the resource.
@@ -53,7 +55,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user_list = User::with('member')->get();
+        return view('user.index',compact('user_list'));
     }
 
     /**
@@ -108,23 +111,46 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param User $user
+     *
      * @return Response
+     * @internal param int $id
      */
-    public function update($id)
+    public function update(User $user)
     {
-        //
+        $inputs = Request::all();
+        $old_email = $user->email;
+
+        if(!empty($inputs['new_password'])){
+            //Attempting to reset user's password
+            if($inputs['new_password'] !== $inputs['new_password_confirm']){
+                //Passwords didn't match.
+                flash()->error('Passwords did not match! Please retry.');
+                return redirect()->back();
+            }
+            $user->password = bcrypt($inputs['new_password']);
+        }
+
+        if($old_email != $inputs['email']){
+            $user->email = $inputs['email'];
+        }
+
+        $user->save();
+
+        return redirect(url('user/manage'));
     }
 
     /**

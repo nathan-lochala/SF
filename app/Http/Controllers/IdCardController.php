@@ -28,11 +28,7 @@ class IdCardController extends Controller
      */
     public function reprint(PrintList $id_card)
     {
-        $id_card->update([
-            'created_at' => Carbon::now(),
-            'printed_at' => null,
-            'received_at' => null
-        ]);
+        $id_card->reprint();
 
         flash()->success('ID Card set to be re-printed.');
         return redirect()->back();
@@ -47,9 +43,10 @@ class IdCardController extends Controller
      */
     public function received(PrintList $id_card)
     {
-        $id_card->update(['received_at' => Carbon::now()]);
+        $id_card->received();
+
         if( ! $id_card->printed_at){
-            $id_card->update(['printed_at' => Carbon::now()]);
+            $id_card->printed();
         }
 
         flash()->success('ID Card Received');
@@ -65,7 +62,7 @@ class IdCardController extends Controller
      */
     public function printed(PrintList $id_card)
     {
-        $id_card->update(['printed_at' => Carbon::now()]);
+        $id_card->printed();
 
         flash()->success('ID Card Printed');
         return redirect()->back();
@@ -80,6 +77,43 @@ class IdCardController extends Controller
     {
         $print_list = PrintList::printing()->with('member')->get();
         return view('idcard.export',compact('print_list'));
+    }
+
+    /**
+     * Return the Import ID Card Form
+     *
+     * @return \Illuminate\View\View
+     */
+    public function import()
+    {
+        $member_list = Member::memberDropdown();
+        return view('idcard.import',compact('member_list'));
+    }
+
+    /**
+     * Process the ID Card Form
+     *
+     * @return \Illuminate\View\View
+     */
+    public function importStore()
+    {
+        if(!empty(Request::input('member_id'))){
+
+            foreach(Request::input('member_id') as $member_id){
+                $member = Member::find($member_id)->load('idcard');
+                if($member->idcard->isEmpty()){
+                    $idcard = PrintList::create(['member_id' => $member->id]);
+                }else{
+                    $idcard = $member->idcard[0];
+                }
+                $idcard->reprint();
+                $idcard->printed();
+            }
+
+            flash()->success('Added ' . count(Request::input('member_id')) . ' ID Cards successfully!');
+        }
+
+        return redirect(url('idcard/import'));
     }
 
     /*
@@ -176,12 +210,14 @@ class IdCardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param PrintList $id_card
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(PrintList $id_card)
     {
-        //
+        $id_card->delete();
+        flash()->success('ID Card deleted successfully.');
+        return redirect()->back();
     }
 }

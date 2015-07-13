@@ -12,5 +12,6 @@
 @include('_includes/_menu/idcard-list')
 @include('_includes/_menu/team-list')
 @include('_includes/_menu/study-group-list')
+@include('_includes/_menu/user-list')
 
 

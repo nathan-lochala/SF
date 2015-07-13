@@ -86,7 +86,7 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeInterstedMembers(Team $team)
+    public function removeInterestedMembers(Team $team)
     {
         $team->interestedMembers()->detach();
 

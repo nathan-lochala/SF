@@ -1,4 +1,4 @@
-## Shenzhen International Fellowship Portal
+## SZN International Fellowship Portal
 
 This application is designed to help SIF to manage different aspects of their members, teams, and study groups. It is developed by [Nathan Lochala](mailto:nathan.lochala@gmail.com)
 with the help of a number of SIF members.
@@ -102,8 +102,8 @@ Unless otherwise indicated, all intellectual property rights, including the copy
 designs, trade marks, logos, software and all proprietary data as well as any business, marketing, 
 technical or other information in the material contained in this Web Site (SIF Portal) 
 (including, without limitation, photographs and graphical images) constitute and 
-remain the sole property of Shenzhen International Fellowship. 
+remain the sole property of SZN International Fellowship. 
 
-Copyright ©2015 Shenzhen International Fellowship
+Copyright ©2015 SZN International Fellowship
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

@@ -26,7 +26,7 @@ Route::get('test', 'TestController@index');
 
 /*
     |--------------------------------------------------------------------------
-    | AUTHENTICATION
+    | AUTHENTICATION / USERS
     |--------------------------------------------------------------------------
 */
 Route::controllers([
@@ -35,6 +35,13 @@ Route::controllers([
 ]);
 Route::post('user/{user}/password_reset','UserController@passwordReset');
 Route::post('user/{member}/create','UserController@store');
+
+    //Edit
+Route::get('user/{user}/edit','UserController@edit');
+Route::patch('user/{user}','UserController@update');
+
+    //Manage
+Route::get('user/manage','UserController@index');
 
 
 /*
@@ -67,9 +74,6 @@ Route::get('member/{member}/delete','MemberController@destroy');
     |--------------------------------------------------------------------------
 */
 
-Route::get('idcard','IdCardController@index');
-Route::get('idcard/store','IdCardController@store');
-
     //Modify ID Cards
 Route::get('idcard/{id_card}/reprint','IdCardController@reprint');
 Route::get('idcard/{id_card}/printed','IdCardController@printed');
@@ -77,6 +81,14 @@ Route::get('idcard/{id_card}/received','IdCardController@received');
 
     //Export
 Route::get('idcard/export','IdCardController@export');
+
+    //Import
+Route::get('idcard/import','IdCardController@import');
+Route::post('idcard/import','IdCardController@importStore');
+
+    //Index
+Route::get('idcard','IdCardController@index');
+Route::get('idcard/store','IdCardController@store');
 
 /*
     |--------------------------------------------------------------------------
@@ -115,7 +127,7 @@ Route::get('study_group','StudyGroupController@index');
 */
     //Manage Members
 Route::get('team/{team}/add/{member}','TeamController@addMember');
-Route::get('team/{team}/clear_interests','TeamController@removeInterstedMembers');
+Route::get('team/{team}/clear_interests','TeamController@removeInterestedMembers');
 Route::get('team/{team}/add_members','TeamController@addMembers');
 Route::get('team/{team}/remove_member/{member}','TeamController@removeMember');
 Route::post('team/{team}/add_members','TeamController@storeAddMembers');

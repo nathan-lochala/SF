@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\District\District;
+use App\Events\NewMember;
 use App\Member\Family;
 use App\Member\Member;
 use App\Member\PrintList;
@@ -121,6 +122,8 @@ class MemberController extends Controller
         if($member){
             flash()->success('Member added successfully!');
         }
+        event(new NewMember($member));
+
         if(isset($inputs['new_family'])){
             //Make sure member has a family
             //pass the family id to the view
@@ -212,13 +215,9 @@ class MemberController extends Controller
     protected function storeNewMember($inputs)
     {
         $member = Member::cleanMemberInputs(Member::create($inputs));
-        PrintList::create([
-            'member_id' => $member->id
-        ]);
         if(isset($inputs['team_id'])){
             $member->teamInterests()->attach($inputs['team_id']);
         }
-
         return $member;
     }
 

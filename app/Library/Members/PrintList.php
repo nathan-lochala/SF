@@ -2,6 +2,7 @@
 
 namespace App\Member;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PrintList extends Model
@@ -72,6 +73,56 @@ class PrintList extends Model
     {
         $query->whereNull('received_at')
             ->whereNotNull('printed_at');
+    }
+    
+    /*
+        |--------------------------------------------------------------------------
+        | PROCESS METHODS
+        |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Mark an ID Card as Printed
+     *
+     * @return $this
+     */
+    public function printed()
+    {
+        $this->update([
+            'printed_at' => Carbon::now()
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Mark an ID Card as Delivered
+     *
+     * @return $this
+     */
+    public function received()
+    {
+        $this->update([
+            'received_at' => Carbon::now()
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Mark an ID Card as Needing to be RePrinted
+     *
+     * @return $this
+     */
+    public function reprint()
+    {
+        $this->update([
+            'created_at' => Carbon::now(),
+            'printed_at' => null,
+            'received_at' => null
+        ]);
+
+        return $this;
     }
 
 }
