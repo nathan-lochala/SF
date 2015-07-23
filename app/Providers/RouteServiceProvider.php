@@ -8,6 +8,7 @@ use App\Member\PrintList;
 use App\StudyGroup\StudyGroup;
 use App\Team\Team;
 use App\User;
+use App\Visitor\Visitor;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -39,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('id_card', PrintList::class);
         $router->model('family', Family::class);
         $router->model('study_group', StudyGroup::class);
+        $router->model('visitor', Visitor::class);
     }
 
     /**
