@@ -13,7 +13,7 @@ class VisitorController extends Controller
         | CUSTOM METHODS
         |--------------------------------------------------------------------------
     */
-    
+
 
 
     /**

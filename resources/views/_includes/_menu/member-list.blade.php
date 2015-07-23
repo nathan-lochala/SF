@@ -1,6 +1,6 @@
 <li>
     <a class="accordion-toggle {{ $menu_member or '' }}">
-        <span class="glyphicons glyphicons-parents"></span>
+        <span class="glyphicons glyphicons-group"></span>
         <span class="sidebar-title">Members</span>
         <span class="caret"></span>
     </a>
