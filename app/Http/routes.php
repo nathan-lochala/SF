@@ -143,3 +143,24 @@ Route::get('team/{team}/delete','TeamController@destroy');
 Route::get('team/{team}','TeamController@show');
     //Index
 Route::get('team','TeamController@index');
+
+/*
+    |--------------------------------------------------------------------------
+    | VISITORS
+    |--------------------------------------------------------------------------
+*/
+//Statistics
+Route::get('visitor/statistics','VisitorController@statistics');
+
+//Create
+Route::get('visitor/create','VisitorController@create');
+Route::post('visitor/create','VisitorController@store');
+//Edit
+Route::get('visitor/{visitor}/edit','VisitorController@edit');
+Route::patch('visitor/{visitor}','VisitorController@update');
+//Delete
+Route::get('visitor/{visitor}/delete','VisitorController@destroy');
+//View
+Route::get('visitor/{visitor}','VisitorController@show');
+//Index
+Route::get('visitor','VisitorController@index');

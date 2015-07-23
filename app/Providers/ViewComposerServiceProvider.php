@@ -34,6 +34,10 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('menu_user','menu-open');
         });
 
+        view()->composer(['visitor/*'],function($view){
+            $view->with('menu_visitor','menu-open');
+        });
+
     }
 
     /**

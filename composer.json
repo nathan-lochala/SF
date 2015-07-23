@@ -24,7 +24,8 @@
             "app/Library/Districts",
             "app/Library/Members",
             "app/Library/StudyGroups",
-            "app/Library/Teams"
+            "app/Library/Teams",
+            "app/Library/Visitors"
         ],
         "psr-4": {
             "App\\": "app/"
