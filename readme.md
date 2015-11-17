@@ -3,7 +3,7 @@
 This application is designed to help SIF to manage different aspects of their members, teams, and study groups. It is developed by [Nathan Lochala](mailto:nathan.lochala@gmail.com).
 
 ### Development Roadmap
-#### V1.3 - Coming Late July 2015
+#### V1.3 - Coming Early 2016
 ##### -- Sunday School
 <ul>
     <li>Create Sunday School Section</li>
